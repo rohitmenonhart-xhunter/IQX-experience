@@ -42,47 +42,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Function to copy API key to clipboard
-    // Function to copy API key to clipboard
-function copyApiKeyToClipboard() {
-    const apiKey = localStorage.getItem('api_key');
-    const userDisplayName = userNameSpan.textContent.trim();
-    const admissionNumber = admissionNumberSpan.textContent.trim();
+    function copyApiKeyToClipboard() {
+        const apiKey = localStorage.getItem('api_key');
+        const userDisplayName = userNameSpan.textContent.trim();
+        const admissionNumber = admissionNumberSpan.textContent.trim();
 
-    // Create a temporary textarea element to hold the API key
-    const tempTextArea = document.createElement('textarea');
-    tempTextArea.value = apiKey;
+        // Create a temporary textarea element to hold the API key
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = apiKey;
 
-    // Append the textarea to the DOM (this is necessary for the copy command to work)
-    document.body.appendChild(tempTextArea);
+        // Append the textarea to the DOM (this is necessary for the copy command to work)
+        document.body.appendChild(tempTextArea);
 
-    // Select the text in the textarea
-    tempTextArea.select();
-    tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+        // Select the text in the textarea
+        tempTextArea.select();
+        tempTextArea.setSelectionRange(0, 99999); // For mobile devices
 
-    // Copy the selected text to the clipboard
-    document.execCommand('copy');
+        // Copy the selected text to the clipboard
+        document.execCommand('copy');
 
-    // Remove the temporary textarea from the DOM
-    document.body.removeChild(tempTextArea);
+        // Remove the temporary textarea from the DOM
+        document.body.removeChild(tempTextArea);
 
-    // Send API key, user name, and admission number to Firebase Realtime Database
-    const db = firebase.database();
-    db.ref('api_keys').push({
-        apiKey: apiKey,
-        userName: userDisplayName,
-        admissionNumber: admissionNumber,
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-    }).then(() => {
-        alert('API Key copied and details sent to Firebase!');
-    }).catch(error => {
-        console.error('Error sending data to Firebase:', error);
-        alert('Error sending data to Firebase. Please try again.');
-    });
+        // Send API key, user name, and admission number to Firebase Realtime Database
+        const db = firebase.database();
+        db.ref('api_keys').push({
+            apiKey: apiKey,
+            userName: userDisplayName,
+            admissionNumber: admissionNumber,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+        }).then(() => {
+            alert('API Key copied and details sent to Firebase!');
+        }).catch(error => {
+            console.error('Error sending data to Firebase:', error);
+            alert('Error sending data to Firebase. Please try again.');
+        });
 
-    // Inform the user that the key has been copied
-    alert("API Key copied to clipboard!");
-}
-
+        // Inform the user that the key has been copied
+        alert("API Key copied to clipboard!");
+    }
 
     // Start updating API key
     updateApiKey();
@@ -145,3 +143,15 @@ function copyApiKeyToClipboard() {
         }
     });
 });
+
+// Popup modal for initial alert
+window.onload = function() {
+    const modal = document.getElementById("myModal");
+    const closeModalButton = document.getElementById("closeModalButton");
+
+    modal.style.display = "block";
+
+    closeModalButton.onclick = function() {
+        modal.style.display = "none";
+    };
+};
