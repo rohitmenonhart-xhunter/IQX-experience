@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQX AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyCuWTdQuHs_l6rvfzaxvY4y-Uzn0EARRwM",
+  authDomain: "athentication-3c73e.firebaseapp.com",
+  databaseURL: "https://athentication-3c73e-default-rtdb.firebaseio.com",
+  projectId: "athentication-3c73e",
+  storageBucket: "athentication-3c73e.appspot.com",
+  messagingSenderId: "218346867452",
+  appId: "1:218346867452:web:58a57b37f6b6a42ec72579",
+  measurementId: "G-3GBM5TSMLS"
+};;
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <style>
+        /* Add styles for modal or alert box */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: rgb(0, 0, 0);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #070606;
+        }
+    </style>
+</head>
+<body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Welcome to IQX AI</h2>
+            <p>Please copy your API key and proceed to the Experience page.</p>
+            <p>You are being tracked, and you are solely responsible for your API key.</p>
+            <button id="closeModalButton" class="btn">Got it, let's proceed!</button>
+        </div>
+    </div>
+    <div class="container">
+        <div id="auth-container">
+            <img src="logo.png" alt="IQX Logo" class="auth-logo">
+            <button id="login-button" class="btn">Login with Google</button>
+        </div>
+        <div id="content" style="display: none;">
+            <section class="hero">
+                <div class="hero-content">
+                    <img src="logo.png" alt="IQX Logo" class="hero-logo">
+                    <h1>Welcome to the Future of AI with IQX - (experience page)</h1>
+                    <p>Experience the power of AI that can simulate any human being’s texting style and voice.</p>
+                    <p id="user-info" style="display: none;">Welcome, <span id="user-name"></span>! Admission Number: <span id="admission-number"></span></p>
+                    <div class="api-key-section">
+                        <label for="api-key">Generated API Key:</label>
+                        <div id="api-key" class="api-key"></div>
+                        <button id="copy-api-key-button" class="btn">Copy Key</button>
+                    </div>
+                    <a href="https://principalchat.streamlit.app/" class="btn">Go to Experience Page</a>
+                </div>
+            </section>
+
+            <section id="product" class="product">
+                <h2>IQX AI</h2>
+                <p>IQX AI offers unparalleled performance and capabilities, designed to meet your needs. This is v1, and v2 will be even greater!</p>
+                <img src="product-image.jpg" alt="IQX AI Product">
+                
+            </section>
+
+            <section class="features">
+                <h2>Features</h2>
+                <div class="feature-box">
+                    <h3>Human-like Texting</h3>
+                    <p>IQX can simulate any human being's texting style with remarkable accuracy.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Voice Simulation</h3>
+                    <p>Experience the next level of AI with voice simulation that sounds just like the person.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Advanced AI Algorithms</h3>
+                    <p>IQX uses advanced AI algorithms to deliver seamless performance and realistic simulations.</p>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2024 IQX. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script>
+        // Get the modal
+const modal = document.getElementById('myModal');
+
+// Get the close button
+const closeButton = document.querySelector('.close-button');
+
+// Get the "Got it, let's proceed!" button
+const closeModalButton = document.getElementById('closeModalButton');
+
+// When the page loads, show the modal
+document.addEventListener('DOMContentLoaded', () => {
+    modal.style.display = 'block';
+});
+
+// Close the modal when the user clicks the close button
+closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close the modal when the user clicks the "Got it, let's proceed!" button
+closeModalButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>
